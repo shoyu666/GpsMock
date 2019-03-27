@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -71,7 +72,7 @@ public class MockService extends Service {
                 HashMap<String, Double> hm = delta(latitude, longitude);
                 location.setLatitude(hm.get("lat"));
                 location.setLongitude(hm.get("lon"));
-                location.setSpeed(Float.parseFloat(lines[2]));
+                location.setSpeed(Float.parseFloat(lines[2])/3.6f);
                 location.setBearing(Float.parseFloat(lines[3]));
                 location.setAccuracy(20f); // 精度（米）
                 playList.add(location);
@@ -86,7 +87,6 @@ public class MockService extends Service {
             }
         }
     }
-
     @Override
     public void onCreate() {
         super.onCreate();
